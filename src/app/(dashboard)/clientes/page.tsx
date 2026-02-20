@@ -29,8 +29,8 @@ export default function ClientesPage() {
     <div className="space-y-8">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Clientes</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-foreground">Clientes</h1>
+          <p className="mt-2 text-muted-foreground">
             Gerencie seus clientes e histórico de atendimentos
           </p>
         </div>
@@ -57,25 +57,25 @@ export default function ClientesPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
-                <p className="text-sm text-gray-600">CPF/CNPJ</p>
+                <p className="text-sm text-muted-foreground">CPF/CNPJ</p>
                 <p className="font-medium">{client.cpfCnpj}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-600">Email</p>
+                <p className="text-sm text-muted-foreground">Email</p>
                 <p className="font-medium">{client.email}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-600">Telefone</p>
+                <p className="text-sm text-muted-foreground">Telefone</p>
                 <p className="font-medium">{client.phone}</p>
               </div>
               <div className="border-t pt-3 mt-3">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-gray-600">Notas</p>
+                    <p className="text-sm text-muted-foreground">Notas</p>
                     <p className="text-xl font-bold text-primary-500">{client.totalInvoices}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Total</p>
+                    <p className="text-sm text-muted-foreground">Total</p>
                     <p className="text-xl font-bold text-primary-500">R$ {client.totalAmount}</p>
                   </div>
                 </div>

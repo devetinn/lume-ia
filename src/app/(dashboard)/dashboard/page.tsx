@@ -1,77 +1,80 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Mic, FileText, TrendingUp, Clock } from 'lucide-react'
 import Link from 'next/link'
-
-const stats = [
-  { label: 'Notas Emitidas', value: '24', icon: FileText, trend: '+12% vs mês anterior' },
-  { label: 'Faturamento', value: 'R$ 12.500', icon: TrendingUp, trend: '+8% vs mês anterior' },
-  { label: 'Tempo Economizado', value: '4.2h', icon: Clock, trend: 'Esta semana' },
-]
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-}
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-}
+import { motion } from 'framer-motion'
+import { FileText, TrendingUp, Users, ArrowRight } from 'lucide-react'
 
 export default function DashboardPage() {
+  const stats = [
+    { label: 'Notas Emitidas', value: '24', icon: FileText, color: 'text-violet-400', link: '/notas' },
+    { label: 'Faturamento Total', value: 'R$ 12.500', icon: TrendingUp, color: 'text-blue-400' },
+    { label: 'Pacientes Ativos', value: '18', icon: Users, color: 'text-cyan-400' },
+  ]
+
   return (
     <div className="space-y-12">
-      <motion.div {...fadeInUp}>
-        <h1 className="text-4xl font-bold tracking-tight">Bem-vindo de volta</h1>
-        <p className="text-zinc-400 mt-2 text-lg">Seu consultório funcionando 24/7</p>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-4xl font-bold tracking-tight text-foreground">
+          Dashboard
+        </h1>
+        <p className="text-muted-foreground mt-2">
+          Visão geral do seu consultório
+        </p>
       </motion.div>
 
-      <motion.div 
+      <motion.div
         className="grid grid-cols-1 md:grid-cols-3 gap-6"
-        variants={staggerContainer}
-        initial="initial"
-        animate="animate"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, staggerChildren: 0.1 }}
       >
-        {stats.map((stat) => (
+        {stats.map((stat, index) => (
           <motion.div
             key={stat.label}
-            variants={fadeInUp}
-            className="glass glass-hover p-6 rounded-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 * index }}
+            className="bg-zinc-900/40 backdrop-blur-md border border-border/50 p-6 rounded-2xl hover:bg-zinc-900/60 transition-all"
           >
             <div className="flex items-start justify-between">
-              <div>
-                <p className="text-sm text-zinc-400">{stat.label}</p>
-                <p className="text-3xl font-bold tracking-tight mt-2">{stat.value}</p>
-                <p className="text-xs text-zinc-500 mt-2">{stat.trend}</p>
+              <div className="flex-1">
+                <p className="text-sm text-foreground0 mb-2">{stat.label}</p>
+                <p className="text-3xl font-bold text-foreground">{stat.value}</p>
+                {stat.link && (
+                  <Link 
+                    href={stat.link}
+                    className="inline-flex items-center gap-1 text-sm text-violet-400 hover:text-violet-300 mt-3 transition-colors"
+                  >
+                    Ver todas as notas
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                )}
               </div>
-              <div className="p-3 bg-navy/20 rounded-xl">
-                <stat.icon className="w-6 h-6 text-navy" strokeWidth={1.5} />
-              </div>
+              <stat.icon className={`w-6 h-6 ${stat.color}`} strokeWidth={1.5} />
             </div>
           </motion.div>
         ))}
       </motion.div>
 
-      <motion.div {...fadeInUp} className="glass p-8 rounded-2xl">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight">Emissão Rápida</h2>
-            <p className="text-zinc-400 mt-1">Fale e pronto. Nota emitida em segundos.</p>
-          </div>
-        </div>
-        
-        <Link 
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="bg-zinc-900/40 backdrop-blur-md border border-border/50 p-8 rounded-2xl"
+      >
+        <h2 className="text-2xl font-semibold text-foreground mb-6">
+          Ação Rápida
+        </h2>
+        <Link
           href="/emissao"
-          className="inline-flex items-center gap-3 px-8 py-4 bg-navy hover:bg-navy-light rounded-xl font-medium transition-all hover:scale-105"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white rounded-xl transition-all hover:scale-105"
         >
-          <Mic className="w-5 h-5" strokeWidth={1.5} />
-          Emitir por Voz Agora
+          <FileText className="w-5 h-5" strokeWidth={1.5} />
+          Nova Emissão por Voz
         </Link>
       </motion.div>
     </div>

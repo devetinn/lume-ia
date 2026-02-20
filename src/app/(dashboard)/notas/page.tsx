@@ -1,120 +1,105 @@
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
-import { Input } from '@/components/ui/Input'
+import { FileText, Download, CheckCircle, XCircle } from 'lucide-react'
 
 export default function NotasPage() {
-  // Mock data - will be replaced with real data from Supabase
   const invoices = [
-    {
-      id: 1,
-      number: '1234',
-      clientName: 'João Silva',
-      serviceValue: 300,
-      netValue: 279,
-      issuedAt: '2026-02-15',
-      status: 'emitida',
-    },
-    {
-      id: 2,
-      number: '1235',
-      clientName: 'Maria Santos',
-      serviceValue: 450,
-      netValue: 418.50,
-      issuedAt: '2026-02-16',
-      status: 'emitida',
-    },
-    {
-      id: 3,
-      number: '1236',
-      clientName: 'Pedro Costa',
-      serviceValue: 600,
-      netValue: 558,
-      issuedAt: '2026-02-17',
-      status: 'cancelada',
-    },
+    { id: 1, number: '1234', client: 'João Silva', value: 300, net: 279, date: '2026-02-15', status: 'emitida' },
+    { id: 2, number: '1235', client: 'Maria Santos', value: 450, net: 418.50, date: '2026-02-16', status: 'emitida' },
+    { id: 3, number: '1236', client: 'Pedro Costa', value: 600, net: 558, date: '2026-02-17', status: 'cancelada' },
   ]
 
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Minhas Notas Fiscais</h1>
-          <p className="mt-2 text-gray-600">
-            Histórico completo de notas emitidas
-          </p>
+          <h1 className="text-3xl font-bold text-foreground">Minhas Notas Fiscais</h1>
+          <p className="mt-2 text-muted-foreground">Histórico completo de notas emitidas</p>
         </div>
-        <Button>Exportar PDF</Button>
+        <button className="px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 flex items-center gap-2">
+          <Download className="w-4 h-4" strokeWidth={1.5} />
+          Exportar PDF
+        </button>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Filtros</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-4">
-            <Input type="date" label="Data Início" />
-            <Input type="date" label="Data Fim" />
-            <Input type="text" label="Cliente" placeholder="Nome do cliente..." />
-            <Input type="text" label="Número NF" placeholder="1234..." />
+      <div className="bg-zinc-900/40 backdrop-blur-md border border-border/50 rounded-2xl p-6">
+        <h2 className="text-lg font-semibold text-foreground mb-4">Filtros</h2>
+        <div className="grid gap-4 md:grid-cols-4">
+          <div>
+            <label className="block text-sm text-muted-foreground mb-2">Data Início</label>
+            <input type="date" className="w-full px-3 py-2 bg-background/50 border border-border rounded-lg text-foreground focus:border-violet-500 focus:ring-1 focus:ring-violet-500/20" />
           </div>
-        </CardContent>
-      </Card>
+          <div>
+            <label className="block text-sm text-muted-foreground mb-2">Data Fim</label>
+            <input type="date" className="w-full px-3 py-2 bg-background/50 border border-border rounded-lg text-foreground focus:border-violet-500 focus:ring-1 focus:ring-violet-500/20" />
+          </div>
+          <div>
+            <label className="block text-sm text-muted-foreground mb-2">Cliente</label>
+            <input type="text" placeholder="Nome do cliente..." className="w-full px-3 py-2 bg-background/50 border border-border rounded-lg text-foreground placeholder:text-foreground0 focus:border-violet-500 focus:ring-1 focus:ring-violet-500/20" />
+          </div>
+          <div>
+            <label className="block text-sm text-muted-foreground mb-2">Número NF</label>
+            <input type="text" placeholder="1234..." className="w-full px-3 py-2 bg-background/50 border border-border rounded-lg text-foreground placeholder:text-foreground0 focus:border-violet-500 focus:ring-1 focus:ring-violet-500/20" />
+          </div>
+        </div>
+      </div>
 
-      <Card>
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <CardTitle>Lista de Notas</CardTitle>
-            <span className="text-sm text-gray-500">{invoices.length} nota(s) encontrada(s)</span>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b">
-                  <th className="text-left py-3 px-4 font-semibold text-sm text-gray-600">Número</th>
-                  <th className="text-left py-3 px-4 font-semibold text-sm text-gray-600">Data</th>
-                  <th className="text-left py-3 px-4 font-semibold text-sm text-gray-600">Cliente</th>
-                  <th className="text-right py-3 px-4 font-semibold text-sm text-gray-600">Valor Bruto</th>
-                  <th className="text-right py-3 px-4 font-semibold text-sm text-gray-600">Valor Líquido</th>
-                  <th className="text-center py-3 px-4 font-semibold text-sm text-gray-600">Status</th>
-                  <th className="text-center py-3 px-4 font-semibold text-sm text-gray-600">Ações</th>
+      <div className="bg-zinc-900/40 backdrop-blur-md border border-border/50 rounded-2xl p-6">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-semibold text-foreground">Lista de Notas</h2>
+          <span className="text-sm text-foreground0">{invoices.length} nota(s)</span>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Número</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Data</th>
+                <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Cliente</th>
+                <th className="text-right py-3 px-4 text-sm font-semibold text-muted-foreground">Valor Bruto</th>
+                <th className="text-right py-3 px-4 text-sm font-semibold text-muted-foreground">Valor Líquido</th>
+                <th className="text-center py-3 px-4 text-sm font-semibold text-muted-foreground">Status</th>
+                <th className="text-center py-3 px-4 text-sm font-semibold text-muted-foreground">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {invoices.map((inv) => (
+                <tr key={inv.id} className="border-b border-border hover:bg-zinc-800/30">
+                  <td className="py-3 px-4 text-foreground font-medium">
+                    <div className="flex items-center gap-2">
+                      <FileText className="w-4 h-4 text-violet-400" strokeWidth={1.5} />
+                      #{inv.number}
+                    </div>
+                  </td>
+                  <td className="py-3 px-4 text-foreground">{new Date(inv.date).toLocaleDateString('pt-BR')}</td>
+                  <td className="py-3 px-4 text-foreground">{inv.client}</td>
+                  <td className="py-3 px-4 text-right text-foreground">R$ {inv.value.toFixed(2)}</td>
+                  <td className="py-3 px-4 text-right text-foreground font-semibold">R$ {inv.net.toFixed(2)}</td>
+                  <td className="py-3 px-4">
+                    <div className="flex justify-center">
+                      {inv.status === 'emitida' ? (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                          <CheckCircle className="w-3 h-3" strokeWidth={2} />
+                          Emitida
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-500/10 text-red-400 border border-red-500/20">
+                          <XCircle className="w-3 h-3" strokeWidth={2} />
+                          Cancelada
+                        </span>
+                      )}
+                    </div>
+                  </td>
+                  <td className="py-3 px-4">
+                    <div className="flex justify-center gap-2">
+                      <button className="px-3 py-1 text-sm text-muted-foreground hover:text-foreground hover:bg-zinc-800/50 rounded-lg">Ver PDF</button>
+                      <button className="px-3 py-1 text-sm text-muted-foreground hover:text-foreground hover:bg-zinc-800/50 rounded-lg">Detalhes</button>
+                    </div>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {invoices.map((invoice) => (
-                  <tr key={invoice.id} className="border-b hover:bg-gray-50">
-                    <td className="py-3 px-4 font-medium">NFS-e #{invoice.number}</td>
-                    <td className="py-3 px-4">{new Date(invoice.issuedAt).toLocaleDateString('pt-BR')}</td>
-                    <td className="py-3 px-4">{invoice.clientName}</td>
-                    <td className="py-3 px-4 text-right">R$ {invoice.serviceValue.toFixed(2)}</td>
-                    <td className="py-3 px-4 text-right font-semibold">R$ {invoice.netValue.toFixed(2)}</td>
-                    <td className="py-3 px-4 text-center">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        invoice.status === 'emitida' 
-                          ? 'bg-success/10 text-success' 
-                          : 'bg-error/10 text-error'
-                      }`}>
-                        {invoice.status === 'emitida' ? '✓ Emitida' : '✗ Cancelada'}
-                      </span>
-                    </td>
-                    <td className="py-3 px-4">
-                      <div className="flex justify-center gap-2">
-                        <Button variant="ghost" size="sm">
-                          Ver PDF
-                        </Button>
-                        <Button variant="ghost" size="sm">
-                          Detalhes
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </CardContent>
-      </Card>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   )
 }

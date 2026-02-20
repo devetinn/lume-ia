@@ -13,8 +13,8 @@ export default function ContabilidadePage() {
     <div className="space-y-8">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Painel Contábil</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-foreground">Painel Contábil</h1>
+          <p className="mt-2 text-muted-foreground">
             Visão consolidada de todas as clínicas gerenciadas
           </p>
         </div>
@@ -24,7 +24,7 @@ export default function ContabilidadePage() {
       <div className="grid gap-6 md:grid-cols-3">
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm font-medium text-gray-600">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Total de Clínicas
             </CardTitle>
           </CardHeader>
@@ -35,7 +35,7 @@ export default function ContabilidadePage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm font-medium text-gray-600">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Notas Emitidas (Mês)
             </CardTitle>
           </CardHeader>
@@ -48,7 +48,7 @@ export default function ContabilidadePage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm font-medium text-gray-600">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Faturamento Total (Mês)
             </CardTitle>
           </CardHeader>
@@ -71,7 +71,7 @@ export default function ContabilidadePage() {
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="font-semibold text-lg">{clinic.name}</h3>
-                    <p className="text-sm text-gray-500">{clinic.month}</p>
+                    <p className="text-sm text-muted-foreground">{clinic.month}</p>
                   </div>
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm">
@@ -84,17 +84,17 @@ export default function ContabilidadePage() {
                 </div>
                 <div className="grid grid-cols-3 gap-4">
                   <div>
-                    <p className="text-sm text-gray-600">Notas Emitidas</p>
+                    <p className="text-sm text-muted-foreground">Notas Emitidas</p>
                     <p className="text-xl font-bold text-primary-500">{clinic.invoices}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Faturamento</p>
+                    <p className="text-sm text-muted-foreground">Faturamento</p>
                     <p className="text-xl font-bold text-primary-500">
                       R$ {clinic.total.toLocaleString('pt-BR')}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Impostos</p>
+                    <p className="text-sm text-muted-foreground">Impostos</p>
                     <p className="text-xl font-bold text-primary-500">
                       R$ {(clinic.total * 0.07).toFixed(2)}
                     </p>

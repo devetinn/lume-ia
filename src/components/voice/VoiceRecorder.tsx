@@ -29,7 +29,7 @@ export function VoiceRecorder({ onRecordingComplete: _onRecordingComplete, onErr
         `}
         aria-label={isRecording ? 'Parar gravação' : 'Iniciar gravação'}
       >
-        <div className="absolute inset-0 rounded-full bg-white/10 animate-pulse" />
+        <div className="absolute inset-0 rounded-full bg-card/10 animate-pulse" />
         
         {isRecording ? (
           <Square className="relative z-10 h-10 w-10 mx-auto text-white" strokeWidth={2} fill="white" />
@@ -42,12 +42,12 @@ export function VoiceRecorder({ onRecordingComplete: _onRecordingComplete, onErr
       {isRecording && (
         <div className="flex items-center gap-2 animate-pulse">
           <div className="h-2 w-2 rounded-full bg-red-500" />
-          <span className="text-sm font-medium text-zinc-400">Gravando...</span>
+          <span className="text-sm font-medium text-muted-foreground">Gravando...</span>
         </div>
       )}
 
       {!isRecording && (
-        <p className="text-sm text-zinc-500">Clique para gravar</p>
+        <p className="text-sm text-foreground0">Clique para gravar</p>
       )}
     </div>
   )

@@ -4,9 +4,9 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-50">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Navbar Premium */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -41,20 +41,20 @@ export default function Home() {
               </span>
             </h1>
             
-            <p className="mx-auto max-w-2xl text-xl text-zinc-400 leading-relaxed">
+            <p className="mx-auto max-w-2xl text-xl text-muted-foreground leading-relaxed">
               Médicos emitem notas fiscais em segundos. A IA transcreve, calcula impostos e integra com sua contabilidade.
             </p>
           </div>
 
           {/* Voice Recorder Premium Card */}
           <div className="mx-auto max-w-2xl mb-20">
-            <div className="relative rounded-2xl border border-zinc-800/50 bg-zinc-900/30 backdrop-blur-xl p-8 shadow-2xl">
+            <div className="relative rounded-2xl border border-border/50 bg-zinc-900/30 backdrop-blur-xl p-8 shadow-2xl">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/5 to-cyan-500/5" />
               
               <div className="relative">
                 <div className="mb-6 text-center">
                   <h3 className="text-lg font-semibold mb-2">Experimente agora</h3>
-                  <p className="text-sm text-zinc-500">
+                  <p className="text-sm text-foreground0">
                     Clique no microfone e diga: &ldquo;Nota de 300 reais para João Silva, CPF 123...&rdquo;
                   </p>
                 </div>
@@ -79,7 +79,7 @@ export default function Home() {
           {/* Bento Grid Features */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Feature 1 - Maior destaque */}
-            <div className="md:col-span-2 group relative rounded-2xl border border-zinc-800/50 bg-zinc-900/30 backdrop-blur-xl p-8 hover:border-zinc-700/50 transition-all">
+            <div className="md:col-span-2 group relative rounded-2xl border border-border/50 bg-zinc-900/30 backdrop-blur-xl p-8 hover:border-zinc-700/50 transition-all">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
               
               <div className="relative">
@@ -88,14 +88,14 @@ export default function Home() {
                 </div>
                 
                 <h3 className="mb-2 text-2xl font-bold tracking-tight">Emissão por Voz</h3>
-                <p className="text-zinc-400 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   Grave um áudio de 10 segundos e receba sua nota fiscal pronta. Sem digitação, sem complicação.
                 </p>
               </div>
             </div>
 
             {/* Feature 2 */}
-            <div className="group relative rounded-2xl border border-zinc-800/50 bg-zinc-900/30 backdrop-blur-xl p-8 hover:border-zinc-700/50 transition-all">
+            <div className="group relative rounded-2xl border border-border/50 bg-zinc-900/30 backdrop-blur-xl p-8 hover:border-zinc-700/50 transition-all">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
               
               <div className="relative">
@@ -104,14 +104,14 @@ export default function Home() {
                 </div>
                 
                 <h3 className="mb-2 text-xl font-bold tracking-tight">IA Tributária</h3>
-                <p className="text-zinc-400 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   Cálculo automático de impostos específicos da área médica (ISS, INSS, IR).
                 </p>
               </div>
             </div>
 
             {/* Feature 3 */}
-            <div className="group relative rounded-2xl border border-zinc-800/50 bg-zinc-900/30 backdrop-blur-xl p-8 hover:border-zinc-700/50 transition-all">
+            <div className="group relative rounded-2xl border border-border/50 bg-zinc-900/30 backdrop-blur-xl p-8 hover:border-zinc-700/50 transition-all">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
               
               <div className="relative">
@@ -120,20 +120,20 @@ export default function Home() {
                 </div>
                 
                 <h3 className="mb-2 text-xl font-bold tracking-tight">Integração Total</h3>
-                <p className="text-zinc-400 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   Seu escritório contábil visualiza tudo em tempo real. Relatórios consolidados mensais.
                 </p>
               </div>
             </div>
 
             {/* Feature 4 - Span 2 colunas */}
-            <div className="md:col-span-2 group relative rounded-2xl border border-zinc-800/50 bg-zinc-900/30 backdrop-blur-xl p-8 hover:border-zinc-700/50 transition-all">
+            <div className="md:col-span-2 group relative rounded-2xl border border-border/50 bg-zinc-900/30 backdrop-blur-xl p-8 hover:border-zinc-700/50 transition-all">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-500/5 to-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
               
               <div className="relative flex items-center justify-between">
                 <div>
                   <h3 className="mb-2 text-2xl font-bold tracking-tight">Focado em CE, SE e RN</h3>
-                  <p className="text-zinc-400 leading-relaxed max-w-xl">
+                  <p className="text-muted-foreground leading-relaxed max-w-xl">
                     Compliance total com legislação municipal de Fortaleza, Aracaju e Natal. Pronto para usar.
                   </p>
                 </div>
@@ -155,7 +155,7 @@ export default function Home() {
               <ArrowRight className="h-5 w-5" strokeWidth={2} />
             </Link>
             
-            <p className="mt-4 text-sm text-zinc-500">
+            <p className="mt-4 text-sm text-foreground0">
               Grátis para testar • Sem cartão de crédito
             </p>
           </div>
@@ -163,8 +163,8 @@ export default function Home() {
       </section>
 
       {/* Footer Premium */}
-      <footer className="border-t border-zinc-800/50 py-8 px-6">
-        <div className="mx-auto max-w-7xl flex items-center justify-between text-sm text-zinc-500">
+      <footer className="border-t border-border/50 py-8 px-6">
+        <div className="mx-auto max-w-7xl flex items-center justify-between text-sm text-foreground0">
           <p>© 2025 LUME IA. Tecnologia fiscal inteligente.</p>
           <div className="flex items-center gap-6">
             <Link href="#" className="hover:text-zinc-300 transition-colors">Termos</Link>
