@@ -4,7 +4,7 @@ import OpenAI from 'openai'
  * OpenAI client for Whisper and GPT-4
  */
 export const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || 'placeholder-openai-key',
 })
 
 /**

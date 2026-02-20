@@ -1,1 +1,2 @@
-Tool call argument 'initial_content' pruned from message history.
+// Placeholder - Este arquivo não está sendo usado no momento
+export {}

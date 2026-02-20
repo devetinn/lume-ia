@@ -72,11 +72,11 @@ export default function ClientesPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-sm text-muted-foreground">Notas</p>
-                    <p className="text-xl font-bold text-primary-500">{client.totalInvoices}</p>
+                    <p className="text-xl font-bold text-violet-400">{client.totalInvoices}</p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Total</p>
-                    <p className="text-xl font-bold text-primary-500">R$ {client.totalAmount}</p>
+                    <p className="text-xl font-bold text-violet-400">R$ {client.totalAmount}</p>
                   </div>
                 </div>
               </div>
