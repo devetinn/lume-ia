@@ -185,7 +185,7 @@ export default function EmissaoPage() {
             </li>
             <li className="flex items-start">
               <span className="text-primary-500 mr-2">✓</span>
-              <span>Exemplo: "Nota de trezentos reais para João da Silva, CPF 123.456.789-00"</span>
+              <span>Exemplo: &ldquo;Nota de trezentos reais para João da Silva, CPF 123.456.789-00&rdquo;</span>
             </li>
             <li className="flex items-start">
               <span className="text-primary-500 mr-2">✓</span>

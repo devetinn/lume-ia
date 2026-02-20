@@ -55,7 +55,7 @@ export default function Home() {
                 <div className="mb-6 text-center">
                   <h3 className="text-lg font-semibold mb-2">Experimente agora</h3>
                   <p className="text-sm text-zinc-500">
-                    Clique no microfone e diga: "Nota de 300 reais para João Silva, CPF 123..."
+                    Clique no microfone e diga: &ldquo;Nota de 300 reais para João Silva, CPF 123...&rdquo;
                   </p>
                 </div>
                 

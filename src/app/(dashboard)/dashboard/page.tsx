@@ -1,116 +1,79 @@
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
+'use client'
+
+import { motion } from 'framer-motion'
+import { Mic, FileText, TrendingUp, Clock } from 'lucide-react'
 import Link from 'next/link'
+
+const stats = [
+  { label: 'Notas Emitidas', value: '24', icon: FileText, trend: '+12% vs mês anterior' },
+  { label: 'Faturamento', value: 'R$ 12.500', icon: TrendingUp, trend: '+8% vs mês anterior' },
+  { label: 'Tempo Economizado', value: '4.2h', icon: Clock, trend: 'Esta semana' },
+]
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+}
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <p className="mt-2 text-gray-600">
-          Bem-vindo ao seu painel de controle fiscal
-        </p>
-      </div>
+    <div className="space-y-12">
+      <motion.div {...fadeInUp}>
+        <h1 className="text-4xl font-bold tracking-tight">Bem-vindo de volta</h1>
+        <p className="text-zinc-400 mt-2 text-lg">Seu consultório funcionando 24/7</p>
+      </motion.div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm font-medium text-gray-600">
-              Notas Este Mês
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-primary-500">24</div>
-            <p className="text-sm text-success mt-1">+12% vs mês anterior</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm font-medium text-gray-600">
-              Faturamento
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-primary-500">R$ 18.400</div>
-            <p className="text-sm text-success mt-1">+8% vs mês anterior</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm font-medium text-gray-600">
-              Impostos Retidos
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-primary-500">R$ 1.288</div>
-            <p className="text-sm text-gray-500 mt-1">7% do faturamento</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm font-medium text-gray-600">
-              Clientes Ativos
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-primary-500">18</div>
-            <p className="text-sm text-success mt-1">+3 novos este mês</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Emitir Nova Nota</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-gray-600">
-              Use o Voice-to-Invoice para emitir notas rapidamente através de áudio
-            </p>
-            <Link href="/emissao">
-              <Button className="w-full">
-                🎤 Emitir com Áudio
-              </Button>
-            </Link>
-            <Link href="/emissao/manual">
-              <Button variant="outline" className="w-full">
-                ✏️ Emitir Manualmente
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Últimas Notas</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="flex justify-between items-center py-2 border-b last:border-0">
-                  <div>
-                    <p className="font-medium text-gray-900">NFS-e #{1234 + i}</p>
-                    <p className="text-sm text-gray-500">Cliente {i}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-medium text-gray-900">R$ {(300 * i).toFixed(2)}</p>
-                    <p className="text-sm text-success">Emitida</p>
-                  </div>
-                </div>
-              ))}
+      <motion.div 
+        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        variants={staggerContainer}
+        initial="initial"
+        animate="animate"
+      >
+        {stats.map((stat) => (
+          <motion.div
+            key={stat.label}
+            variants={fadeInUp}
+            className="glass glass-hover p-6 rounded-2xl"
+          >
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="text-sm text-zinc-400">{stat.label}</p>
+                <p className="text-3xl font-bold tracking-tight mt-2">{stat.value}</p>
+                <p className="text-xs text-zinc-500 mt-2">{stat.trend}</p>
+              </div>
+              <div className="p-3 bg-navy/20 rounded-xl">
+                <stat.icon className="w-6 h-6 text-navy" strokeWidth={1.5} />
+              </div>
             </div>
-            <Link href="/notas">
-              <Button variant="ghost" className="w-full mt-4">
-                Ver Todas
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-      </div>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      <motion.div {...fadeInUp} className="glass p-8 rounded-2xl">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight">Emissão Rápida</h2>
+            <p className="text-zinc-400 mt-1">Fale e pronto. Nota emitida em segundos.</p>
+          </div>
+        </div>
+        
+        <Link 
+          href="/emissao"
+          className="inline-flex items-center gap-3 px-8 py-4 bg-navy hover:bg-navy-light rounded-xl font-medium transition-all hover:scale-105"
+        >
+          <Mic className="w-5 h-5" strokeWidth={1.5} />
+          Emitir por Voz Agora
+        </Link>
+      </motion.div>
     </div>
   )
 }
